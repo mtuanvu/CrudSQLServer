@@ -17,7 +17,7 @@ $students = $studentManager->getAllStudent();
 </head>
 
 <body>
-    <form action="" method="GET">
+    <form action="" method="POST">
         <div class="container mt-5">
             <h2>Student List</h2>
             <a href="add_student.php" class="btn btn-success mb-3">Add Student</a>
@@ -35,7 +35,7 @@ $students = $studentManager->getAllStudent();
                     <?php foreach ($students as $student) : ?>
                         <?php
                         echo "
-                                <input type='hidden' value='" . $student['id'] . "' name='id'>
+                                <input type='hidden' value='" . $student['id'] . "' name='".$student['id']."'>
                                 "; ?>
                         <tr>
                             <td><?php echo $student['id']; ?></td>
