@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_subject'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_mark'])) {
     $student_id = $_POST['student_id'];
     $subject_id = $_POST['subject_id'];
-    $mark = $_POST['mark'];
+    $mark = $_POST['marks'];
 
     $sql = "INSERT INTO marks (student_id, subject_id, mark) VALUES ('$student_id', '$subject_id', '$mark')";
     $conn->query($sql);
@@ -82,6 +82,22 @@ $result_marks = $conn->query($sql_marks);
     Mark: <input type="text" name="marks" required>
     <input type="submit" name="add_mark" value="Add">
     </form>
+    <h2>List of student marks</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Student</th>
+            <th>Subject</th>
+            <th>Mark</th>
+        </tr>
+        <?php while ($row = $result_marks->fetch_assoc()) : ?>
+            <tr>
+                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['student_name']; ?></td>
+                <td><?php echo $row['subject_name']; ?></td>
+                <td><?php echo $row['mark']; ?></td>
+            </tr>
+        <?php endwhile; ?>
 </body>
 
 </html>
